@@ -141,6 +141,7 @@ const Edit = () =>{
             
               })
         })
+        console.log(id)
 },[])
 
   const handleInputChange = (e) =>{

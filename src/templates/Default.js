@@ -17,7 +17,7 @@ const Default = ({children}) => {
     return(
         <>
             <ResponsiveAppBar />
-            <Container maxWidth="md" className={classes.Container}>
+            <Container maxWidth="lg" className={classes.Container}>
                 {children}
             </Container>
             

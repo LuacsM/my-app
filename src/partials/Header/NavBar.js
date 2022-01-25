@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Início', 'Cadastrar Dados', 'Contato'];
+const pages = ['Início', 'Cadastrar Dados', 'Listagem'];
 
 
 const ResponsiveAppBar = () => {
@@ -32,23 +32,25 @@ const ResponsiveAppBar = () => {
       if(route==="Início"){
         history.push("/")
       }else if(route==="Cadastrar Dados"){
-        history.push("add")
+        history.push("/add")
+      }else if(route==="Listagem"){
+        history.push("/customers")
       }
       
       console.log(route)
   }
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            sx={{ flexGrow: 12, mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            LOGO
+           <img src="https://raw.githubusercontent.com/LuacsM/IMG_GETAG/main/logo-seduc-branca.png" alt="" width="200" height="100%"/>
           </Typography>
 
           <Box sx={{ flexGrow: 12, display: { xs: 'flex', md: 'none' } }}>
@@ -93,7 +95,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            LOGO
+            <img src="https://raw.githubusercontent.com/LuacsM/IMG_GETAG/main/logo-seduc-branca.png" alt="" width="200" height="100%"/>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (

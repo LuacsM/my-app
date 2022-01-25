@@ -228,7 +228,7 @@ const CustomersRegister = () =>{
             label="Nome Completo"
             helperText="Preenche certo menino"
             fullWidth
-            variant="standard"
+            
             name="name"
             value={form.name.value}
             onChange={handleInputChange}
@@ -240,7 +240,7 @@ const CustomersRegister = () =>{
             label="Matrícula"
             helperText="Preenche certo menino"
             fullWidth
-            variant="standard"
+            
             name="matricula"
             value={form.matricula.value}
             onChange={handleInputChange}
@@ -253,7 +253,7 @@ const CustomersRegister = () =>{
             name="age"
             label="Data de Nascimento"
             fullWidth
-            variant="standard"
+            
             value={form.age.value}
             onChange={handleInputChange}
           />
@@ -265,7 +265,7 @@ const CustomersRegister = () =>{
             name="nameMother"
             label="Nome da Mãe"
             fullWidth
-            variant="standard"
+            
             value={form.nameMother.value}
             onChange={handleInputChange}
           />
@@ -277,7 +277,7 @@ const CustomersRegister = () =>{
             name="cpf"
             label="CPF da Mãe"
             fullWidth
-            variant="standard"
+            
             value={form.cpf.value}
             onChange={handleInputChange}
           />
@@ -289,7 +289,7 @@ const CustomersRegister = () =>{
             name="tel"
             label="Contato 1"
             fullWidth
-            variant="standard"
+            
             value={form.tel.value}
             onChange={handleInputChange}
           />
@@ -301,7 +301,7 @@ const CustomersRegister = () =>{
             name="tel2"
             label="Contato 2"
             fullWidth
-            variant="standard"
+            
             value={form.tel2.value}
             onChange={handleInputChange}
           />
@@ -313,7 +313,7 @@ const CustomersRegister = () =>{
             name="email"
             label="Email"
             fullWidth
-            variant="standard"
+            
             value={form.email.value}
             onChange={handleInputChange}
           />
@@ -325,7 +325,7 @@ const CustomersRegister = () =>{
             name="cep"
             label="CEP"
             fullWidth
-            variant="standard"
+            
             value={form.cep.value}
             onChange={handleInputChange}
           />
@@ -337,7 +337,7 @@ const CustomersRegister = () =>{
             name="address"
             label="Endereço"
             fullWidth
-            variant="standard"
+            
             value={form.address.value}
             onChange={handleInputChange}
           /> 
@@ -349,7 +349,7 @@ const CustomersRegister = () =>{
             name="numHouse"
             label="Número"
             fullWidth
-            variant="standard"
+            
             value={form.numHouse.value}
             onChange={handleInputChange}
           /> 
@@ -361,7 +361,7 @@ const CustomersRegister = () =>{
             name="city"
             label="Município"
             fullWidth
-            variant="standard"
+            
             value={form.city.value}
             onChange={handleInputChange}
           /> 
@@ -373,7 +373,7 @@ const CustomersRegister = () =>{
             name="district"
             label="Bairro"
             fullWidth
-            variant="standard"
+            
             value={form.district.value}
             onChange={handleInputChange}
           /> 
@@ -386,7 +386,7 @@ const CustomersRegister = () =>{
             label="Complemento"
             fullWidth
             autoComplete="shipping country"
-            variant="standard"
+            
             value={form.complement.value}
             onChange={handleInputChange}
           /> 

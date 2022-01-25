@@ -11,6 +11,7 @@ import TemplateDefault from './templates/Default'
 import TemplatePage from './templates/Page'
 import CustomersRegister from './pages/customers/Register'
 import Edit from './pages/customers/Edit';
+import SignIn from './pages/customers/Search';
 
 const App = () => {
   return (
@@ -21,11 +22,14 @@ const App = () => {
           <Route path="/edit/:id">
             <TemplatePage  Component={Edit} />
           </Route>
+          <Route path="/search">
+            <TemplatePage  Component={SignIn} />
+          </Route>
           <Route path="/add">
             <TemplatePage  Component={CustomersRegister} />
           </Route>
           <Route path="/customers">
-            <TemplatePage title="Clientes" Component={Customers} />
+            <TemplatePage title="Alunos" Component={Customers} />
           </Route>
           <Route path="">
             <TemplatePage title="Home" Component={Home} />
