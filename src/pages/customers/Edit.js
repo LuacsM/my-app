@@ -73,12 +73,14 @@ const Edit = () =>{
 
   })
 
+  const [customers, setCustomers] = useState([])
+
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/students/${id}`)
         .then(response =>{
             const [data] = response.data
-            
-            //console.log(data)
+
+            console.log(data)
             setForm({
                 name:{
                   value: data.name,
@@ -136,11 +138,10 @@ const Edit = () =>{
                   value: data.complement,
                   error: false,
                 },
-            
+
               })
         })
-        //console.log(id)
-})
+},[])
 
   const handleInputChange = (e) =>{
     const {name, value} = e.target
@@ -258,7 +259,7 @@ const Edit = () =>{
         error: true,
       }
     }
-    
+
 
     if(hasError){
       return setForm(newFormState)
@@ -282,7 +283,7 @@ const Edit = () =>{
     }).then( (response)=>{
       console.log('ok', response)
     })
-   
+
   }
 
     return(
@@ -298,6 +299,7 @@ const Edit = () =>{
             label="Nome Completo"
             helperText="Preenche certo menino"
             fullWidth
+            
             name="name"
             value={form.name.value}
             onChange={handleInputChange}
@@ -309,6 +311,7 @@ const Edit = () =>{
             label="Matrícula"
             helperText="Preenche certo menino"
             fullWidth
+            
             name="matricula"
             value={form.matricula.value}
             onChange={handleInputChange}
@@ -321,6 +324,7 @@ const Edit = () =>{
             name="age"
             label="Data de Nascimento"
             fullWidth
+            
             value={form.age.value}
             onChange={handleInputChange}
           />
@@ -332,6 +336,7 @@ const Edit = () =>{
             name="nameMother"
             label="Nome da Mãe"
             fullWidth
+            
             value={form.nameMother.value}
             onChange={handleInputChange}
           />
@@ -343,6 +348,7 @@ const Edit = () =>{
             name="cpf"
             label="CPF da Mãe"
             fullWidth
+            
             value={form.cpf.value}
             onChange={handleInputChange}
           />
@@ -353,7 +359,8 @@ const Edit = () =>{
             error={form.tel.error}
             name="tel"
             label="Contato 1"
-            fullWidth = "true"
+            fullWidth
+            
             value={form.tel.value}
             onChange={handleInputChange}
           />
@@ -364,7 +371,8 @@ const Edit = () =>{
             error={form.tel2.error}
             name="tel2"
             label="Contato 2"
-            fullWidth = "true"
+            fullWidth
+            
             value={form.tel2.value}
             onChange={handleInputChange}
           />
@@ -375,7 +383,8 @@ const Edit = () =>{
             error={form.email.error}
             name="email"
             label="Email"
-            fullWidth = "true"
+            fullWidth
+            
             value={form.email.value}
             onChange={handleInputChange}
           />
@@ -387,6 +396,7 @@ const Edit = () =>{
             name="cep"
             label="CEP"
             fullWidth
+            
             value={form.cep.value}
             onChange={handleInputChange}
           />
@@ -398,6 +408,7 @@ const Edit = () =>{
             name="address"
             label="Endereço"
             fullWidth
+            
             value={form.address.value}
             onChange={handleInputChange}
           /> 
@@ -409,6 +420,7 @@ const Edit = () =>{
             name="numHouse"
             label="Número"
             fullWidth
+            
             value={form.numHouse.value}
             onChange={handleInputChange}
           /> 
@@ -420,6 +432,7 @@ const Edit = () =>{
             name="city"
             label="Município"
             fullWidth
+            
             value={form.city.value}
             onChange={handleInputChange}
           /> 
@@ -431,6 +444,7 @@ const Edit = () =>{
             name="district"
             label="Bairro"
             fullWidth
+            
             value={form.district.value}
             onChange={handleInputChange}
           /> 
@@ -443,6 +457,7 @@ const Edit = () =>{
             label="Complemento"
             fullWidth
             autoComplete="shipping country"
+            
             value={form.complement.value}
             onChange={handleInputChange}
           /> 
@@ -456,4 +471,4 @@ const Edit = () =>{
     )
 }
 
-export default Edit
+export default Edit 
