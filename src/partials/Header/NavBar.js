@@ -14,11 +14,8 @@ import Button from '@mui/material/Button';
 
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Início', 'Cadastrar Dados', 'Listagem'];
-
-
-const ResponsiveAppBar = () => {
-    const history = useHistory()
+  const ResponsiveAppBar = () => {
+  const history = useHistory()
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const handleOpenNavMenu = (event) => {
@@ -29,15 +26,7 @@ const ResponsiveAppBar = () => {
   };
 
   const handleMenuClick = route =>{
-      if(route==="Início"){
-        history.push("/")
-      }else if(route==="Cadastrar Dados"){
-        history.push("/add")
-      }else if(route==="Listagem"){
-        history.push("/customers")
-      }
-      
-      console.log(route)
+      history.push(route)
   }
 
   return (
@@ -82,11 +71,20 @@ const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={()=> handleMenuClick(page)}>
-                  <Typography textAlign="center">{page}</Typography>
+              
+                <MenuItem  onClick={()=> handleMenuClick('/')}>
+                  <Typography textAlign="center">Início</Typography>
                 </MenuItem>
-              ))}
+                <MenuItem onClick={()=> handleMenuClick('/customers')}>
+                <Typography textAlign="center">Listagem</Typography>
+              </MenuItem>
+              <MenuItem  onClick={()=> handleMenuClick('/add')}>
+                  <Typography textAlign="center">Cadastro</Typography>
+                </MenuItem>
+                <MenuItem onClick={()=> handleMenuClick('/search')}>
+                <Typography textAlign="center">Entrar</Typography>
+              </MenuItem>
+              
             </Menu>
           </Box>
           <Typography
@@ -98,15 +96,32 @@ const ResponsiveAppBar = () => {
             <img src="https://raw.githubusercontent.com/LuacsM/IMG_GETAG/main/logo-seduc-branca.png" alt="" width="200" height="100%"/>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={()=> handleMenuClick(page)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            
+            <Button
+              onClick={()=> handleMenuClick("/")}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Início
+            </Button>
+            <Button
+              onClick={()=> handleMenuClick("/customers")}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Listagem
+            </Button>
+            <Button
+              onClick={()=> handleMenuClick("/add")}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Cadastro
+            </Button>
+            <Button
+              onClick={()=> handleMenuClick("/search")}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Entrar
+            </Button>
+           
           </Box>
 
           

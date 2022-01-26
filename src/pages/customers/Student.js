@@ -3,18 +3,20 @@ import axios from "axios";
 import {useHistory} from 'react-router-dom'
 import CustomersCard from "../../components/CustomersCard";
 import Grid from '@mui/material/Grid';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
-const Customers = () => {
+const Student = () => {
+  const {id} = useParams()
   const history = useHistory()
     const [customers, setCustomers] = useState([])
 
     useEffect(()=>{
-        axios.get('http://localhost:8080/api/students/')
+        axios.get(`http://localhost:8080/api/students/${id}`)
             .then(response=>{
                 const data = response.data
                 setCustomers(data)
             })
-    },[])
+    })
 
     const handleEditCustomer = id =>{
       history.push(`/edit/${id}`)
@@ -41,5 +43,5 @@ const Customers = () => {
     )
   }
   
-  export default Customers;
+  export default Student;
   

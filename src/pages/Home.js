@@ -1,8 +1,10 @@
-
+import Copyright from "../partials/Footer/Copyright";
 
 const Home = () => {
     return (
-      <></>
+      <>
+      <Copyright />
+      </>
     )
   }
   

@@ -73,14 +73,12 @@ const Edit = () =>{
 
   })
 
-  const [customers, setCustomers] = useState([])
-
   useEffect(()=>{
-    axios.get(`http://localhost:8080/api/products/${id}`)
+    axios.get(`http://localhost:8080/api/students/${id}`)
         .then(response =>{
             const [data] = response.data
             
-            console.log(data)
+            //console.log(data)
             setForm({
                 name:{
                   value: data.name,
@@ -141,8 +139,8 @@ const Edit = () =>{
             
               })
         })
-        console.log(id)
-},[])
+        //console.log(id)
+})
 
   const handleInputChange = (e) =>{
     const {name, value} = e.target
@@ -266,7 +264,7 @@ const Edit = () =>{
       return setForm(newFormState)
     }
 
-    axios.put(`http://localhost:8080/api/products/${id}`, {
+    axios.put(`http://localhost:8080/api/students/${id}`, {
       name: form.name.value,
       matricula: form.matricula.value,
       age: form.age.value,
@@ -300,7 +298,6 @@ const Edit = () =>{
             label="Nome Completo"
             helperText="Preenche certo menino"
             fullWidth
-            variant="standard"
             name="name"
             value={form.name.value}
             onChange={handleInputChange}
@@ -312,7 +309,6 @@ const Edit = () =>{
             label="Matrícula"
             helperText="Preenche certo menino"
             fullWidth
-            variant="standard"
             name="matricula"
             value={form.matricula.value}
             onChange={handleInputChange}
@@ -325,7 +321,6 @@ const Edit = () =>{
             name="age"
             label="Data de Nascimento"
             fullWidth
-            variant="standard"
             value={form.age.value}
             onChange={handleInputChange}
           />
@@ -337,7 +332,6 @@ const Edit = () =>{
             name="nameMother"
             label="Nome da Mãe"
             fullWidth
-            variant="standard"
             value={form.nameMother.value}
             onChange={handleInputChange}
           />
@@ -349,7 +343,6 @@ const Edit = () =>{
             name="cpf"
             label="CPF da Mãe"
             fullWidth
-            variant="standard"
             value={form.cpf.value}
             onChange={handleInputChange}
           />
@@ -360,8 +353,7 @@ const Edit = () =>{
             error={form.tel.error}
             name="tel"
             label="Contato 1"
-            fullWidth
-            variant="standard"
+            fullWidth = "true"
             value={form.tel.value}
             onChange={handleInputChange}
           />
@@ -372,8 +364,7 @@ const Edit = () =>{
             error={form.tel2.error}
             name="tel2"
             label="Contato 2"
-            fullWidth
-            variant="standard"
+            fullWidth = "true"
             value={form.tel2.value}
             onChange={handleInputChange}
           />
@@ -384,8 +375,7 @@ const Edit = () =>{
             error={form.email.error}
             name="email"
             label="Email"
-            fullWidth
-            variant="standard"
+            fullWidth = "true"
             value={form.email.value}
             onChange={handleInputChange}
           />
@@ -397,7 +387,6 @@ const Edit = () =>{
             name="cep"
             label="CEP"
             fullWidth
-            variant="standard"
             value={form.cep.value}
             onChange={handleInputChange}
           />
@@ -409,7 +398,6 @@ const Edit = () =>{
             name="address"
             label="Endereço"
             fullWidth
-            variant="standard"
             value={form.address.value}
             onChange={handleInputChange}
           /> 
@@ -421,7 +409,6 @@ const Edit = () =>{
             name="numHouse"
             label="Número"
             fullWidth
-            variant="standard"
             value={form.numHouse.value}
             onChange={handleInputChange}
           /> 
@@ -433,7 +420,6 @@ const Edit = () =>{
             name="city"
             label="Município"
             fullWidth
-            variant="standard"
             value={form.city.value}
             onChange={handleInputChange}
           /> 
@@ -445,7 +431,6 @@ const Edit = () =>{
             name="district"
             label="Bairro"
             fullWidth
-            variant="standard"
             value={form.district.value}
             onChange={handleInputChange}
           /> 
@@ -458,7 +443,6 @@ const Edit = () =>{
             label="Complemento"
             fullWidth
             autoComplete="shipping country"
-            variant="standard"
             value={form.complement.value}
             onChange={handleInputChange}
           /> 

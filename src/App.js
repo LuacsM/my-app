@@ -6,6 +6,7 @@ import{
 
 import Home from './pages/Home';
 import Customers from './pages/customers/List';
+import Student from './pages/customers/Student'
 
 import TemplateDefault from './templates/Default'
 import TemplatePage from './templates/Page'
@@ -19,6 +20,9 @@ const App = () => {
       <Router>
         <TemplateDefault>
         <Switch>
+        <Route path="/student/:id">
+            <TemplatePage title="Alunos" Component={Student} />
+          </Route>
           <Route path="/edit/:id">
             <TemplatePage  Component={Edit} />
           </Route>

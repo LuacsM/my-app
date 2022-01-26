@@ -194,7 +194,7 @@ const CustomersRegister = () =>{
 
     console.log(form.name.value)
 
-    axios.post('http://localhost:8080/api/products', {
+    axios.post('http://localhost:8080/api/students', {
       name: form.name.value,
       matricula: form.matricula.value,
       age: form.age.value,
