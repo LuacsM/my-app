@@ -73,14 +73,13 @@ const Edit = () =>{
 
   })
 
-  const [customers, setCustomers] = useState([])
 
   useEffect(()=>{
     axios.get(`http://localhost:8080/api/students/${id}`)
         .then(response =>{
             const [data] = response.data
 
-            console.log(data)
+            //console.log(data)
             setForm({
                 name:{
                   value: data.name,
@@ -281,7 +280,7 @@ const Edit = () =>{
       district: form.district.value,
       complement: form.complement.value,
     }).then( (response)=>{
-      console.log('ok', response)
+      //console.log('ok', response)
     })
 
   }

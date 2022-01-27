@@ -27,7 +27,7 @@ const Student = () => {
         <Grid container>
           {
             customers.map(item =>(
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={4} key={item._id}>
                 <CustomersCard
                   name= {item.name}
                   matricula={item.matricula}

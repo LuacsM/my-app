@@ -8,7 +8,6 @@ import Button from '@mui/material/Button';
 const CustomersCard = ({
     id,
     name,
-    age,
     matricula,
     onEditCustomer,
 }) => {

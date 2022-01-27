@@ -13,6 +13,8 @@ import TemplatePage from './templates/Page'
 import CustomersRegister from './pages/customers/Register'
 import Edit from './pages/customers/Edit';
 import SignIn from './pages/customers/Search';
+import UnRegister from './pages/customers/UnRegister';
+import UnEdit from './pages/customers/UnEdit'
 
 const App = () => {
   return (
@@ -20,6 +22,12 @@ const App = () => {
       <Router>
         <TemplateDefault>
         <Switch>
+          <Route path="/unedit/:id">
+            <TemplatePage title="UnEdit" Component={UnEdit} />
+          </Route>
+          <Route path="/unregister">
+            <TemplatePage title="UnRegister" Component={UnRegister} />
+          </Route>
         <Route path="/student/:id">
             <TemplatePage title="Alunos" Component={Student} />
           </Route>
