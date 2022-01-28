@@ -5,13 +5,14 @@ import { TextField } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
 
 const CustomInput = styled(TextField)({
-  marginBottom: "12px"
+  marginBottom: "12px",
+ 
 });
 
 export default function Input({ name, label, variant,...rest }) {
   const inputRef = useRef(null);
   const materialInputRef = useRef(null);
-  const { fieldName, defaultValue, registerField, error } = useField(name);
+  const { fieldName, registerField, error } = useField(name);
 
  
 
@@ -28,7 +29,7 @@ export default function Input({ name, label, variant,...rest }) {
           .classList.add("MuiFormLabel-filled", "MuiInputLabel-shrink");
       }
     })
-    console.log(defaultValue)
+    
   }, [fieldName, registerField]);
 
   return (
@@ -40,10 +41,9 @@ export default function Input({ name, label, variant,...rest }) {
       ref={materialInputRef}
       helperText={error || null}
       name={fieldName}
-      defaultValue={defaultValue} 
       variant={variant}
       label={label}
-      
+      defaultValue="foo"
       {...rest}
       
     />
