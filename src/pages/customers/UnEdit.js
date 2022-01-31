@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState, useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 import axios from 'axios'
@@ -11,6 +11,11 @@ import Button from '@mui/material/Button';
 
 import { Form } from '@unform/web';
 import  Input  from '../../components/Form/Input';
+
+import FormattedInputs from '../../components/Form/MaskData'
+import MaskTel from '../../components/Form/MaskTel'
+import MaskCpf from '../../components/Form/MaskCpf'
+import MaskCep from '../../components/Form/MaskCep'
 
 const UnEdit = () => {
   const {id} = useParams()
@@ -43,6 +48,7 @@ const UnEdit = () => {
 
   async function handleCepChange(e) {
     const cep = e.target.value;
+    console.log(cep)
 
     const response = await axios.get(`https://viacep.com.br/ws/${cep}/json`);
 
@@ -127,26 +133,26 @@ const UnEdit = () => {
       </Typography>
       <Form onSubmit={handleSubmit} ref={formRef}>
         <Grid container spacing={3}>
-          <Grid item sm={6}>
-          <Input name="name" label="Nome" variant="outlined" fullWidth ></Input>
+          <Grid item xs={12}sm={6}>
+            <Input name="name" label="Nome" variant="outlined" fullWidth ></Input>
           </Grid>
           <Grid item xs={12} sm={3}>
             <Input name="matricula" label="Matrícula" variant="outlined" fullWidth/>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Input name="age" label="Data de Nascimento" variant="outlined" fullWidth/>
+            <FormattedInputs name="age" label="Data de Nascimento" variant="outlined" maskara="CpfMask" placeholder="dd-mm-aaaa" fullWidth />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Input name="nameMother" label="Nome da Mãe" variant="outlined" fullWidth/>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Input name="cpf" label="CPF da Mãe" variant="outlined" fullWidth/>
+            <MaskCpf name="cpf" label="CPF da Mãe" variant="outlined" fullWidth/>
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Input name="tel" label="Contato 1" variant="outlined" fullWidth/>
+            <MaskTel name="tel" label="Contato 1" variant="outlined" fullWidth /> 
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Input name="tel2" label="Contato 2" variant="outlined" fullWidth/>
+            <MaskTel name="tel2" label="Contato 2" variant="outlined" fullWidth/>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Input name="email" label="Email" variant="outlined" fullWidth/>

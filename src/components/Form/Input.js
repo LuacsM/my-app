@@ -4,6 +4,7 @@ import { useField } from "@unform/core";
 import { TextField } from "@material-ui/core";
 import { styled } from "@material-ui/core/styles";
 
+
 const CustomInput = styled(TextField)({
   marginBottom: "12px",
  
@@ -43,8 +44,10 @@ export default function Input({ name, label, variant,...rest }) {
       name={fieldName}
       variant={variant}
       label={label}
-      defaultValue="foo"
+      
       {...rest}
+      
+      InputLabelProps={{ shrink: true }}
       
     />
     
