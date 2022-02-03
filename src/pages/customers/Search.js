@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
+
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -13,27 +13,79 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import * as Yup from 'yup';
+import { useRef } from 'react';
+import { Form } from '@unform/web';
+
+import Matricula from '../../components/Form/MaskMatricula'
+import  Data  from '../../components/Form/MaskData';
+
 import Copyright from '../../partials/Footer/Copyright'
+import { makeStyles } from '@material-ui/styles';
+
+import Toasty from '../../components/Toasty'
+
+const useStyles = makeStyles({
+  Formulario: {
+    marginTop: "25px",
+  },
+  
+});
 
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    
-     const dados = {
-         matricula: data.get('matricula'),
-         age: data.get('age')
-    } 
-    axios.get(`http://localhost:8080/api/students/matricula/${dados.matricula}/${dados.age}`)
-            .then(response=>{
-                const [data] = response.data
-                history.push(`/student/${data._id}`)
-            })
-    };
+  const formRef = useRef(null);
+  const classes = useStyles()
+
+  async function handleSubmit(data) {
+    try {
+      const schema = Yup.object().shape({
+        matricula: Yup.string().required("A Matricula é obrigatória."),
+        age: Yup.string().min(10, "Insira uma data válida (dd-mm-aaaa)").required("A Data de Nascimento é obrigatória."),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      // Validation passed      
+      axios({
+        method: 'post',
+        url: 'http://localhost:8080/auth/authenticate/',
+        data: {
+          matricula: data.matricula,
+          age: data.age
+        }
+      }).then(function (response) {
+        console.log(response);
+        const dados = response.data;
+        console.log(dados.token)
+        localStorage.setItem("token",dados.token);
+
+        history.push('/student/')
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+  
+        // Validation failed
+        const errorMessages = {};
+        err.inner.forEach(error =>{
+          errorMessages[error.path] = error.message;
+        })
+        console.log("error")
+        formRef.current.setErrors(errorMessages);
+      }
+
+    }
+
+  }
 
   const history = useHistory()
 
@@ -44,32 +96,33 @@ export default function SignIn() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 5,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
+          <Form ref={formRef} onSubmit={handleSubmit}  sx={{ mt: 1 }} className={classes.Formulario}> 
+            <Matricula 
               margin="normal"
-              required
+              variant="outlined"
               fullWidth
-              id="email"
+              id="matricula"
               label="Matrícula do Aluno"
               name="matricula"
               avariant="standard"
             />
-            <TextField
+            <Data
               margin="normal"
-              required
+              variant="outlined"
               fullWidth
+              id="age"
               name="age"
               label="Data de Nascimento"
               type="txt"
@@ -83,6 +136,8 @@ export default function SignIn() {
             >
               Entrar
             </Button>
+            <Toasty  severity="error" text="Dados Incorretos"></Toasty>
+            </Form>
             <Grid container>
               <Grid item xs>
                 <Link href="https://portaleducacional.seduc.am.gov.br/#!/consulta-aluno" target="_blank" variant="body2">
@@ -90,7 +145,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
             </Grid>
-          </Box>
+          
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>

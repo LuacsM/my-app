@@ -8,18 +8,31 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 const Student = () => {
   const {id} = useParams()
   const history = useHistory()
+
     const [customers, setCustomers] = useState([])
 
-    useEffect(()=>{
-        axios.get(`http://localhost:8080/api/students/${id}`)
-            .then(response=>{
-                const data = response.data
-                setCustomers(data)
-            })
-    })
+  const token = localStorage.getItem("token");
+  useEffect(()=>{
+    axios.get('http://localhost:8080/projects/', 
+    { headers: { Authorization:`Bearer ${token}`} })
+  .then(response => {
+            // If request is good...
+            //console.log(response.data);
+            const dados = response.data;
+            const aluno = dados.user;
+            setCustomers([aluno])
+            console.log(aluno)
+          })
+        .catch((error) => {
+            console.log(error)
+          })
+  },[])
+   
+
+    
 
     const handleEditCustomer = id =>{
-      history.push(`/edit/${id}`)
+      history.push(`/unedit/`)
     }
 
     return (

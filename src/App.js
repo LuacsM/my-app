@@ -22,14 +22,14 @@ const App = () => {
       <Router>
         <TemplateDefault>
         <Switch>
-          <Route path="/unedit/:id">
+          <Route path="/unedit">
             <TemplatePage title="UnEdit" Component={UnEdit} />
           </Route>
           <Route path="/unregister">
             <TemplatePage title="UnRegister" Component={UnRegister} />
           </Route>
-        <Route path="/student/:id">
-            <TemplatePage title="Alunos" Component={Student} />
+        <Route path="/student">
+            <TemplatePage title="Aluno" Component={Student} />
           </Route>
           <Route path="/edit/:id">
             <TemplatePage  Component={Edit} />

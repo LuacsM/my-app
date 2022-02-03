@@ -1,10 +1,20 @@
+import { useEffect, useRef } from "react";
+import { useField } from "@unform/core";
+
 import TextField from "@material-ui/core/TextField";
+import { styled } from "@material-ui/core/styles";
+
 import PropTypes from "prop-types";
 import React from "react";
 import MaskedInput from "react-text-mask";
 
-import { useEffect, useRef } from "react";
-import { useField } from "@unform/core";
+
+
+const CustomInput = styled(TextField)({
+  marginBottom: "30px",
+ 
+});
+
 
 
 function TextMaskCustom(props) {
@@ -16,7 +26,7 @@ function TextMaskCustom(props) {
       ref={ref => {
         inputRef(ref ? ref.inputElement : null);
       }}
-      mask={[/\d/, /\d/, "-", /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
+      mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/,"-",/\d/]}
     />
   );
 }
@@ -25,7 +35,7 @@ TextMaskCustom.propTypes = {
   inputRef: PropTypes.func.isRequired
 };
 
-export default function FormattedInputs({ name, label, variant,...rest }) {
+export default function MaskMatricula({ name, label, variant,...rest }) {
     const inputRef = useRef(null);
     const materialInputRef = useRef(null);
     const { fieldName, registerField, error } = useField(name);
@@ -60,7 +70,7 @@ export default function FormattedInputs({ name, label, variant,...rest }) {
 
   return (
     
-      <TextField
+      <CustomInput
         inputRef={inputRef} 
         error={!!error}
         ref={materialInputRef}

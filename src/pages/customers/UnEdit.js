@@ -20,30 +20,40 @@ import MaskCep from '../../components/Form/MaskCep'
 const UnEdit = () => {
   const {id} = useParams()
   const formRef = useRef(null);
+
+
+  
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+    axios.get('http://localhost:8080/projects/', 
+    { headers: { Authorization:`Bearer ${token}`} })
+  .then(response => {
+            const dados = response.data;
+            const data = dados.user;
+            console.log(data)
+            formRef.current.setData({ 
+              name: data.name, 
+              matricula: data.matricula, 
+              age: data.age,
+              nameMother: data.nameMother,
+              cpf: data.cpf,
+              tel: data.tel,
+              tel2: data.tel2,
+              email: data.email,
+              cep: data.cep,
+              address: data.address,
+              numHouse: data.numHouse,
+              city: data.city,
+              district: data.district,
+              complement: data.complement,
+          });
+          })
+        .catch((error) => {
+            console.log(error)
+          })
+  },[])
     
 
-  useEffect(() => {
-      axios.get(`http://localhost:8080/api/students/${id}`)
-          .then(user => {
-              const [data] = user.data
-              formRef.current.setData({ 
-                  name: data.name, 
-                  matricula: data.matricula, 
-                  age: data.age,
-                  nameMother: data.nameMother,
-                  cpf: data.cpf,
-                  tel: data.tel,
-                  tel2: data.tel2,
-                  email: data.email,
-                  cep: data.cep,
-                  address: data.address,
-                  numHouse: data.numHouse,
-                  city: data.city,
-                  district: data.district,
-                  complement: data.complement,
-              });
-          });
-  }, []);
 
 
   async function handleCepChange(e) {
@@ -86,7 +96,7 @@ const UnEdit = () => {
         });
   
         // Validation passed
-        axios.put(`http://localhost:8080/api/students/${id}`, {
+        axios.put(`http://localhost:8080/projects/61fc004302ed38063d6a9562`, {
           name: data.name,
           matricula: data.matricula,
           age: data.age,
@@ -158,7 +168,7 @@ const UnEdit = () => {
             <Input name="email" label="Email" variant="outlined" fullWidth/>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Input name="cep"  label="CEP" variant="outlined" fullWidth onChange={handleCepChange}/>
+            <MaskCep name="cep"  label="CEP" variant="outlined" fullWidth onChange={handleCepChange}/>
           </Grid>
           <Grid item xs={12} sm={7}>
             <Input name="address" label="Endereço" variant="outlined" fullWidth/>
