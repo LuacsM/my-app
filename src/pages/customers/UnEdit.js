@@ -22,9 +22,9 @@ const UnEdit = () => {
   const formRef = useRef(null);
 
 
-  
+  const token = localStorage.getItem("token");
   useEffect(()=>{
-    const token = localStorage.getItem("token");
+    
     axios.get('http://localhost:8080/projects/', 
     { headers: { Authorization:`Bearer ${token}`} })
   .then(response => {
@@ -96,7 +96,7 @@ const UnEdit = () => {
         });
   
         // Validation passed
-        axios.put(`http://localhost:8080/projects/61fc004302ed38063d6a9562`, {
+        axios.put('http://localhost:8080/projects/61fd311187ab007159460163', {
           name: data.name,
           matricula: data.matricula,
           age: data.age,
@@ -112,8 +112,9 @@ const UnEdit = () => {
           district: data.district,
           complement: data.complement,
       
-        }).then( (response)=>{
+        }, { headers: { Authorization:`Bearer ${token}`} }).then( (response)=>{
           console.log('ok', response)
+          localStorage.removeItem("token");
         })
         console.log(data);
   
