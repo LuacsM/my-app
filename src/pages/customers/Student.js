@@ -3,10 +3,8 @@ import axios from "axios";
 import {useHistory} from 'react-router-dom'
 import CustomersCard from "../../components/CustomersCard";
 import Grid from '@mui/material/Grid';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Student = () => {
-  const {id} = useParams()
   const history = useHistory()
 
     const [customers, setCustomers] = useState([])

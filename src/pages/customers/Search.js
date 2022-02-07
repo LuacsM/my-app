@@ -59,9 +59,10 @@ export default function SignIn() {
           age: data.age
         }
       }).then(function (response) {
-        console.log(response);
+        //console.log(response);
         const dados = response.data;
-        console.log(dados.token)
+        localStorage.setItem('aluno', JSON.stringify(response.data));
+       console.log(dados.user)
         localStorage.setItem("token",dados.token);
 
         history.push('/student/')
