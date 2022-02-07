@@ -2,6 +2,7 @@ import{
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
 } from 'react-router-dom'
 
 import Home from './pages/Home';
@@ -15,6 +16,25 @@ import Edit from './pages/customers/Edit';
 import SignIn from './pages/customers/Search';
 import UnRegister from './pages/customers/UnRegister';
 import UnEdit from './pages/customers/UnEdit'
+import { Component } from 'react';
+import { isAuthenticate } from './auth';
+
+
+
+const PrivateRoute = ({component, ...rest}) => (
+  <Route 
+    {...rest}
+    render={props =>
+      isAuthenticate() ? (
+        <TemplatePage Component={component} {...rest}/>
+      ):(
+        <Redirect to={{pathname: "/search", state: {from: props.location}}} />
+      )
+    }
+  
+  />
+);
+
 
 const App = () => {
   return (
@@ -22,9 +42,9 @@ const App = () => {
       <Router>
         <TemplateDefault>
         <Switch>
-          <Route path="/unedit">
-            <TemplatePage title="UnEdit" Component={UnEdit} />
-          </Route>
+         
+          <PrivateRoute path="/unedit" component={UnEdit}/>
+          
           <Route path="/unregister">
             <TemplatePage title="UnRegister" Component={UnRegister} />
           </Route>
@@ -44,7 +64,7 @@ const App = () => {
             <TemplatePage title="Alunos" Component={Customers} />
           </Route>
           <Route path="">
-            <TemplatePage title="Home" Component={Home} />
+            <TemplatePage Component={Home} />
           </Route>
         </Switch>
         </TemplateDefault>

@@ -30,7 +30,7 @@ import MenuItem from '@mui/material/MenuItem';
   }
 
   return (
-    <AppBar position="static" >
+    <AppBar position="relative" >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -75,12 +75,6 @@ import MenuItem from '@mui/material/MenuItem';
                 <MenuItem  onClick={()=> handleMenuClick('/')}>
                   <Typography textAlign="center">Início</Typography>
                 </MenuItem>
-                <MenuItem onClick={()=> handleMenuClick('/customers')}>
-                <Typography textAlign="center">Listagem</Typography>
-              </MenuItem>
-              <MenuItem  onClick={()=> handleMenuClick('/add')}>
-                  <Typography textAlign="center">Cadastro</Typography>
-                </MenuItem>
                 <MenuItem onClick={()=> handleMenuClick('/search')}>
                 <Typography textAlign="center">Entrar</Typography>
               </MenuItem>
@@ -102,18 +96,6 @@ import MenuItem from '@mui/material/MenuItem';
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Início
-            </Button>
-            <Button
-              onClick={()=> handleMenuClick("/customers")}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Listagem
-            </Button>
-            <Button
-              onClick={()=> handleMenuClick("/add")}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              Cadastro
             </Button>
             <Button
               onClick={()=> handleMenuClick("/search")}
