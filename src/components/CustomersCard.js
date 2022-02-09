@@ -25,6 +25,16 @@ const CustomersCard = ({
     name,
     matricula,
     nameMother,
+    cpf,
+    tel,
+    tel2,
+    Email,
+    cep,
+    address,
+    numHouse,
+    city,
+    district,
+    component,
     onEditCustomer,
 }) => {
 
@@ -56,9 +66,9 @@ const CustomersCard = ({
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph color="text.secondary">Nome da Mãe: {nameMother}</Typography>
-          <Typography paragraph color="text.secondary">Nome da Mãe: {nameMother}</Typography>
-          <Typography paragraph color="text.secondary">Nome da Mãe: {nameMother}</Typography>
-          <Typography paragraph color="text.secondary">Nome da Mãe: {nameMother}</Typography>
+          <Typography paragraph color="text.secondary">CPF da Mãe: {cpf}</Typography>
+          <Typography paragraph color="text.secondary">Contato 1: {tel}</Typography>
+          <Typography paragraph color="text.secondary">Contato 2: {tel2}</Typography>
 
         </CardContent>
       </Collapse>

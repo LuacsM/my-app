@@ -3,12 +3,13 @@ import Typography from '@mui/material/Typography';
 import {useHistory} from 'react-router-dom'
 import CustomersCard from "../../components/CustomersCard";
 import Grid from '@mui/material/Grid';
+import Toasty from '../../components/Toasty'
 
 const Student = () => {
   const history = useHistory()
 
-    const [customers, setCustomers] = useState([])
-
+  const [customers, setCustomers] = useState([])
+  const [openToasty, setOpenToasty] = useState(false)
 
   // Receber a string
   let alunoString = localStorage.getItem('aluno');
@@ -18,6 +19,10 @@ const Student = () => {
   const [ nome, sobreNome ] = parts;
   useEffect(()=>{
     setCustomers([alunoObj])
+    if(localStorage.getItem("confirmEdit")=== "true"){
+      setOpenToasty(true);
+      localStorage.setItem("confirmEdit","false");
+    }
    
   }, [])
    
@@ -51,6 +56,16 @@ const Student = () => {
                   matricula={item.matricula}
                   age={item.age}
                   nameMother={item.nameMother}
+                  cpf={item.cpf}
+                  tel={item.tel}
+                  tel2={item.tel2}
+                  email={item.email}
+                  cep={item.cep}
+                  address={item.address}
+                  numHouse={item.numHouse}
+                  city={item.city}
+                  district={item.district}
+                  component={item.complement}
                   id={localStorage.getItem('idAlunoSeducAm')}
                   onEditCustomer={handleEditCustomer}
                 />
@@ -58,6 +73,7 @@ const Student = () => {
             ))
           }
         </Grid>
+        <Toasty open={openToasty} severity="success" text="Dados Alterados com Sucesso!" onClose={()=> setOpenToasty(false)}/>
       </>
     )
   }

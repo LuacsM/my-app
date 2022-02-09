@@ -59,14 +59,12 @@ const UnEdit = () => {
 
 
   async function handleCepChange(e) {
-    const cep = e.target.value;
-    console.log(cep)
-
-    const response = await axios.get(`https://viacep.com.br/ws/${cep}/json`);
-
-    formRef.current.setFieldValue('address', response.data.logradouro);
-    formRef.current.setFieldValue('city', response.data.localidade);
-    formRef.current.setFieldValue('district', response.data.bairro);
+    
+    await axios.get(`https://viacep.com.br/ws/${localStorage.getItem("cepAluno")}/json`).then((response) =>{
+      formRef.current.setFieldValue('address', response.data.logradouro);
+      formRef.current.setFieldValue('city', response.data.localidade);
+      formRef.current.setFieldValue('district', response.data.bairro);
+    });
     
   }
 
@@ -117,12 +115,16 @@ const UnEdit = () => {
       
         }, { headers: { Authorization:`Bearer ${token}`} }).then( (response)=>{
           console.log('ok', response)
-          //localStorage.removeItem("token");
-        })
-        localStorage.setItem('aluno', JSON.stringify(data));
-        setOpenToasty(true)
-        setIsLoadding(false)
-        //history.push(`/student`)
+          localStorage.setItem('aluno', JSON.stringify(data));
+          localStorage.setItem("confirmEdit", "true");
+          setIsLoadding(false)
+          history.push('/student')
+        }).catch(function (error) {
+          localStorage.removeItem('token');
+          history.push('/search')
+        });
+
+        
   
       } catch (err) {
   
@@ -160,7 +162,7 @@ const UnEdit = () => {
       <Form onSubmit={handleSubmit} ref={formRef}>
         <Grid container spacing={3}>
           <Grid item xs={12}sm={6}>
-            <Input name="name" label="Nome" variant="outlined" fullWidth ></Input>
+            <Input name="name" label="Nome" variant="outlined" InputProps={{readOnly: true,}} fullWidth></Input>
           </Grid>
           <Grid item xs={12} sm={3}>
             <Input name="matricula" label="Matrícula" variant="outlined" InputProps={{readOnly: true,}} fullWidth/>
@@ -183,8 +185,8 @@ const UnEdit = () => {
           <Grid item xs={12} sm={4}>
             <Input name="email" label="Email" variant="outlined" fullWidth/>
           </Grid>
-          <Grid item xs={12} sm={3}>
-            <MaskCep name="cep"  label="CEP" variant="outlined" fullWidth onChange={handleCepChange}/>
+          <Grid item xs={12} sm={3} onChange={handleCepChange}>
+            <MaskCep name="cep"  label="CEP" variant="outlined" fullWidth />
           </Grid>
           <Grid item xs={12} sm={7}>
             <Input name="address" label="Endereço" variant="outlined" fullWidth/>

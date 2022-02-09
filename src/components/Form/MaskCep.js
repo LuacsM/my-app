@@ -56,7 +56,9 @@ export default function MaskCep({ name, label, variant,...rest }) {
     setValues({
       ...values,
       [name]: event.target.value
+      
     });
+    localStorage.setItem("cepAluno",event.target.value);
   };
 
   return (
