@@ -77,7 +77,7 @@ export default function MaskCpf({ name, label, variant,...rest }) {
           inputComponent: TextMaskCustom
         }}
         fullWidth
-        InputLabelProps={{ shrink: true }}
+        
       />
     </div>
   );

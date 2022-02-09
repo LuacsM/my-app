@@ -42,7 +42,7 @@ const Home = () => {
               Formulário dos alunos
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-            Esse formulario se destina à coleta e atualização de informações a respeito dos alunos. 
+            Caro(a) aluno(a), a Secretaria de Educação e Desporto do Estado do Amazonas, com o objetivo de atualizar suas informações cadastrais de maneira simples e com mais comodidade, elaborou este formulário para que os estudantes da Rede Estadual de Ensino realizem sua atualização dos dados cadastrais.
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -54,7 +54,7 @@ const Home = () => {
               <Button variant="outlined">Mais Sobre</Button>
             </Stack>
           </Container>
-       
+
         <Copyright />
       </>
     )

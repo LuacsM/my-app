@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 import axios from 'axios'
 import * as Yup from 'yup';
+import {useHistory} from 'react-router-dom'
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -16,41 +17,42 @@ import FormattedInputs from '../../components/Form/MaskData'
 import MaskTel from '../../components/Form/MaskTel'
 import MaskCpf from '../../components/Form/MaskCpf'
 import MaskCep from '../../components/Form/MaskCep'
+import Toasty from '../../components/Toasty'
 
 const UnEdit = () => {
   const {id} = useParams()
   const formRef = useRef(null);
+  const history = useHistory()
 
-
+  const [openToasty, setOpenToasty] = React.useState(false)
+  const [isLoadding, setIsLoadding] = React.useState(false)
   const token = localStorage.getItem("token");
+  
   useEffect(()=>{
+    const token = localStorage.getItem("token");
+    // Receber a string
+    let alunoString = localStorage.getItem('aluno');
+    // transformar em objeto novamente
+    let data = JSON.parse(alunoString);
     
-    axios.get('http://localhost:8080/projects/', 
-    { headers: { Authorization:`Bearer ${token}`} })
-  .then(response => {
-            const dados = response.data;
-            const data = dados.user;
-            console.log(data)
-            formRef.current.setData({ 
-              name: data.name, 
-              matricula: data.matricula, 
-              age: data.age,
-              nameMother: data.nameMother,
-              cpf: data.cpf,
-              tel: data.tel,
-              tel2: data.tel2,
-              email: data.email,
-              cep: data.cep,
-              address: data.address,
-              numHouse: data.numHouse,
-              city: data.city,
-              district: data.district,
-              complement: data.complement,
-          });
-          })
-        .catch((error) => {
-            console.log(error)
-          })
+      console.log(data)
+      formRef.current.setData({ 
+        name: data.name, 
+        matricula: data.matricula, 
+        age: data.age,
+        nameMother: data.nameMother,
+        cpf: data.cpf,
+        tel: data.tel,
+        tel2: data.tel2,
+        email: data.email,
+        cep: data.cep,
+        address: data.address,
+        numHouse: data.numHouse,
+        city: data.city,
+        district: data.district,
+        complement: data.complement,
+    });
+        
   },[])
     
 
@@ -96,7 +98,8 @@ const UnEdit = () => {
         });
   
         // Validation passed
-        axios.put('http://localhost:8080/projects/61fd311187ab007159460163', {
+        setIsLoadding(true)
+        axios.put(`http://localhost:8080/projects/${id}`, {
           name: data.name,
           matricula: data.matricula,
           age: data.age,
@@ -116,7 +119,10 @@ const UnEdit = () => {
           console.log('ok', response)
           //localStorage.removeItem("token");
         })
-        console.log(data);
+        localStorage.setItem('aluno', JSON.stringify(data));
+        setOpenToasty(true)
+        setIsLoadding(false)
+        //history.push(`/student`)
   
       } catch (err) {
   
@@ -138,17 +144,26 @@ const UnEdit = () => {
 
     return(
         
-        <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Shipping address
-      </Typography>
+      <React.Fragment>
+      
+        <Grid container marginTop="20px" marginBottom="15px">
+          <Typography
+            component="h1"
+            variant="h4"
+            align="center"
+            color="text.secondary"
+            gutterBottom
+          >
+            Formulário
+          </Typography>
+        </Grid>
       <Form onSubmit={handleSubmit} ref={formRef}>
         <Grid container spacing={3}>
           <Grid item xs={12}sm={6}>
             <Input name="name" label="Nome" variant="outlined" fullWidth ></Input>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Input name="matricula" label="Matrícula" variant="outlined" fullWidth/>
+            <Input name="matricula" label="Matrícula" variant="outlined" InputProps={{readOnly: true,}} fullWidth/>
           </Grid>
           <Grid item xs={12} sm={3}>
             <FormattedInputs name="age" label="Data de Nascimento" variant="outlined" maskara="CpfMask" placeholder="dd-mm-aaaa" fullWidth />
@@ -187,9 +202,11 @@ const UnEdit = () => {
             <Input name="complement" label="Complemento" variant="outlined" fullWidth/>
           </Grid>
           <Grid item xs={12}>
-            <Button variant="outlined" type='submit' >Registrar</Button>
+            <Button variant="contained" type='submit' disabled={isLoadding}>{
+              isLoadding ? 'Aguarde...' : 'Salvar'
+            }</Button>
           </Grid>
-          
+          <Toasty open={openToasty} severity="success" text="Dados Alterados com Sucesso!" onClose={()=> setOpenToasty(false)}/>
         </Grid>
       </Form>
     </React.Fragment>

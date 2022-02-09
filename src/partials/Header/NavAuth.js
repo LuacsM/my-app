@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 
 import MenuItem from '@mui/material/MenuItem';
 
-  const ResponsiveAppBar = () => {
+  const NavAuth = () => {
   const history = useHistory()
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -28,6 +28,12 @@ import MenuItem from '@mui/material/MenuItem';
   const handleMenuClick = route =>{
       history.push(route)
   }
+
+  const sair = () =>{
+    localStorage.removeItem('token');
+    window.location.href="/"
+    //history.push('/')
+}
 
   return (
     <AppBar position="relative" >
@@ -72,11 +78,11 @@ import MenuItem from '@mui/material/MenuItem';
               }}
             >
               
-                <MenuItem  onClick={()=> handleMenuClick('/')}>
-                  <Typography textAlign="center">Início</Typography>
+                <MenuItem  onClick={()=> handleMenuClick('/student')}>
+                  <Typography textAlign="center">Perfil</Typography>
                 </MenuItem>
-                <MenuItem onClick={()=> handleMenuClick('/search')}>
-                <Typography textAlign="center">Entrar</Typography>
+                <MenuItem onClick={()=> sair()}>
+                <Typography textAlign="center">Sair</Typography>
               </MenuItem>
               
             </Menu>
@@ -95,16 +101,16 @@ import MenuItem from '@mui/material/MenuItem';
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             
             <Button
-              onClick={()=> handleMenuClick("/")}
+              onClick={()=> handleMenuClick("/student")}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-              Início
+              Perfil
             </Button>
             <Button
-              onClick={()=> handleMenuClick("/search")}
+              onClick={()=> sair()}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-              Entrar
+              Sair
             </Button>
            
           </Box>
@@ -115,4 +121,4 @@ import MenuItem from '@mui/material/MenuItem';
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default NavAuth;

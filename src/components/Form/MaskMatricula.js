@@ -86,7 +86,7 @@ export default function MaskMatricula({ name, label, variant,...rest }) {
           inputComponent: TextMaskCustom
         }}
         fullWidth
-        InputLabelProps={{ shrink: true }}
+        
       />
     
   );

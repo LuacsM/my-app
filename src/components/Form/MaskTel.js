@@ -77,7 +77,7 @@ export default function MaskTel({ name, label, variant,...rest }) {
           inputComponent: TextMaskCustom
         }}
         fullWidth
-        InputLabelProps={{ shrink: true }}
+        
       />
     </div>
   );

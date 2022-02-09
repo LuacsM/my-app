@@ -47,7 +47,7 @@ export default function Input({ name, label, variant,...rest }) {
       
       {...rest}
       
-      InputLabelProps={{ shrink: true }}
+      
       
     />
     

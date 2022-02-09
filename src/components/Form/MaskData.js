@@ -68,7 +68,7 @@ export default function FormattedInputs({ name, label, variant,...rest }) {
         name={fieldName}
         variant={variant}
         label={label}
-    
+        
 
         onChange={handleChange("textmask")}
 
@@ -76,7 +76,7 @@ export default function FormattedInputs({ name, label, variant,...rest }) {
           inputComponent: TextMaskCustom
         }}
         fullWidth
-        InputLabelProps={{ shrink: true }}
+        
       />
     
   );

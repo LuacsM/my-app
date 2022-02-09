@@ -38,6 +38,7 @@ const theme = createTheme();
 export default function SignIn() {
   const formRef = useRef(null);
   const classes = useStyles()
+  const [openToasty, setOpenToasty] = React.useState(false)
 
   async function handleSubmit(data) {
     try {
@@ -61,15 +62,17 @@ export default function SignIn() {
       }).then(function (response) {
         //console.log(response);
         const dados = response.data;
-        localStorage.setItem('aluno', JSON.stringify(response.data));
-       console.log(dados.user)
+        localStorage.setItem('aluno', JSON.stringify(dados.user));
+        localStorage.setItem('idAlunoSeducAm', dados.user._id);
+        console.log(dados.user)
         localStorage.setItem("token",dados.token);
 
-        history.push('/student/')
+        window.location.href="/student"
 
       })
       .catch(function (error) {
         console.log(error);
+        setOpenToasty(true)
       });
 
     } catch (err) {
@@ -117,7 +120,7 @@ export default function SignIn() {
               id="matricula"
               label="Matrícula do Aluno"
               name="matricula"
-              avariant="standard"
+              
             />
             <Data
               margin="normal"
@@ -146,7 +149,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
             </Grid>
-          
+            <Toasty open={openToasty} severity="error" text="Algum dado está incorreto" onClose={()=> setOpenToasty(false)}/>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
