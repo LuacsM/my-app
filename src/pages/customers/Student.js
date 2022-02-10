@@ -65,7 +65,7 @@ const Student = () => {
                   numHouse={item.numHouse}
                   city={item.city}
                   district={item.district}
-                  component={item.complement}
+                  complement={item.complement}
                   id={localStorage.getItem('idAlunoSeducAm')}
                   onEditCustomer={handleEditCustomer}
                 />

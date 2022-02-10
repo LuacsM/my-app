@@ -23,8 +23,13 @@ export default function Input({ name, label, variant,...rest }) {
       ref: inputRef.current,
       path: "value",
       setValue(ref, value) {
-        ref.value = value;
-
+        if(value === undefined){
+          ref.value = "";
+        }else{
+          ref.value = value;
+        }
+        
+        console.log(value)
         materialInputRef.current
           .querySelector("label")
           .classList.add("MuiFormLabel-filled", "MuiInputLabel-shrink");
@@ -33,10 +38,11 @@ export default function Input({ name, label, variant,...rest }) {
     
   }, [fieldName, registerField]);
 
+
   return (
     
     <CustomInput
-      
+    
       inputRef={inputRef} 
       error={!!error}
       ref={materialInputRef}
@@ -44,9 +50,8 @@ export default function Input({ name, label, variant,...rest }) {
       name={fieldName}
       variant={variant}
       label={label}
-      
+      InputLabelProps={{ shrink: true }} 
       {...rest}
-      
       
       
     />

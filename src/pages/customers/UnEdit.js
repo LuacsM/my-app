@@ -168,7 +168,7 @@ const UnEdit = () => {
             <Input name="matricula" label="Matrícula" variant="outlined" InputProps={{readOnly: true,}} fullWidth/>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <FormattedInputs name="age" label="Data de Nascimento" variant="outlined" maskara="CpfMask" placeholder="dd-mm-aaaa" fullWidth />
+            <Input name="age" label="Data de Nascimento" variant="outlined" InputProps={{readOnly: true,}} fullWidth />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Input name="nameMother" label="Nome da Mãe" variant="outlined" fullWidth/>

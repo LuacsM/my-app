@@ -37,7 +37,11 @@ export default function MaskCpf({ name, label, variant,...rest }) {
           ref: inputRef.current,
           path: "value",
           setValue(ref, value) {
-            ref.value = value;
+            if(value === undefined){
+              ref.value = "";
+            }else{
+              ref.value = value;
+            }
     
             materialInputRef.current
               .querySelector("label")
@@ -69,13 +73,8 @@ export default function MaskCpf({ name, label, variant,...rest }) {
         name={fieldName}
         variant={variant}
         label={label}
-    
-
-        onChange={handleChange("textmask")}
-
-        InputProps={{
-          inputComponent: TextMaskCustom
-        }}
+        onChange={handleChange("textmask")} 
+        InputLabelProps={{ shrink: true }} 
         fullWidth
         
       />

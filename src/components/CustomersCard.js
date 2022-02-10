@@ -28,13 +28,13 @@ const CustomersCard = ({
     cpf,
     tel,
     tel2,
-    Email,
+    email,
     cep,
     address,
     numHouse,
     city,
     district,
-    component,
+    complement,
     onEditCustomer,
 }) => {
 
@@ -69,6 +69,13 @@ const CustomersCard = ({
           <Typography paragraph color="text.secondary">CPF da Mãe: {cpf}</Typography>
           <Typography paragraph color="text.secondary">Contato 1: {tel}</Typography>
           <Typography paragraph color="text.secondary">Contato 2: {tel2}</Typography>
+          <Typography paragraph color="text.secondary">Email: {email}</Typography>
+          <Typography paragraph color="text.secondary">CEP: {cep}</Typography>
+          <Typography paragraph color="text.secondary">Endereço: {address}</Typography>
+          <Typography paragraph color="text.secondary">Número: {numHouse}</Typography>
+          <Typography paragraph color="text.secondary">Município 2: {city}</Typography>
+          <Typography paragraph color="text.secondary">Bairro: {district}</Typography>
+          <Typography paragraph color="text.secondary">Complemento: {complement}</Typography>
 
         </CardContent>
       </Collapse>
