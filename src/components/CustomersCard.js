@@ -52,7 +52,7 @@ const CustomersCard = ({
     <Card sx={{ maxWidth: "xg", marginBottom: "30px",}}>
         <CardHeader
             title={`${name}`}
-            subheader={`${matricula} ${id}`}
+            subheader={`${matricula}`}
             
         />
       <CardActions>

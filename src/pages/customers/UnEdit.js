@@ -97,7 +97,7 @@ const UnEdit = () => {
   
         // Validation passed
         setIsLoadding(true)
-        axios.put(`http://localhost:8080/projects/${id}`, {
+        axios.put(`${process.env.REACT_APP_BACKEND}/projects/${id}`, {
           name: data.name,
           matricula: data.matricula,
           age: data.age,

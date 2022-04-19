@@ -54,7 +54,7 @@ export default function SignIn() {
       // Validation passed      
       axios({
         method: 'post',
-        url: 'http://localhost:8080/auth/authenticate/',
+        url: `${process.env.REACT_APP_BACKEND}/auth/authenticate/`,
         data: {
           matricula: data.matricula,
           age: data.age

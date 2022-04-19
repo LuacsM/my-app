@@ -13,7 +13,7 @@ export const isAuthenticate = () => {
       try {
         axios({
           method: 'post',
-          url: 'http://localhost:8080/auth/check-token/',
+          url: `${process.env.REACT_APP_BACKEND}/auth/check-token/`,
           data: {
             "token": token
           }
