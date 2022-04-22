@@ -67,7 +67,8 @@ export default function SignIn() {
         console.log(dados.user)
         localStorage.setItem("token",dados.token);
 
-        window.location.href="/student"
+        history.push('/student')
+        
 
       })
       .catch(function (error) {

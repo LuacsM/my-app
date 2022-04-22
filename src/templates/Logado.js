@@ -1,6 +1,6 @@
 import Container from '@mui/material/Container';
 
-import ResponsiveAppBar from '../partials/Header/NavBar';
+import NavAuth from '../partials/Header/NavAuth';
 
 import { makeStyles } from '@material-ui/styles';
 
@@ -11,12 +11,11 @@ const useStyles = makeStyles({
   },
 });
 
-
-const Default = ({children}) => {
+const Logado = ({children}) => {
     const classes = useStyles()
     return(
         <>
-          <ResponsiveAppBar/>
+          <NavAuth/>
           <Container maxWidth="lg" className={classes.Container}>
               {children}
           </Container>
@@ -25,4 +24,4 @@ const Default = ({children}) => {
     )
 }
 
-export default Default
+export default Logado

@@ -31,8 +31,7 @@ import MenuItem from '@mui/material/MenuItem';
 
   const sair = () =>{
     localStorage.removeItem('token');
-    window.location.href="/"
-    //history.push('/')
+    history.push('/')
 }
 
   return (

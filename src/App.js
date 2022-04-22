@@ -11,6 +11,7 @@ import SignIn from './pages/customers/Search';
 import UnEdit from './pages/customers/UnEdit'
 
 import TemplateDefault from './templates/Default'
+import Logado from './templates/Logado'
 import TemplatePage from './templates/Page'
 
 import { isAuthenticate } from './auth';
@@ -22,7 +23,9 @@ const PrivateRoute = ({component, ...rest}) => (
     {...rest}
     render={props =>
       isAuthenticate() ? (
-        <TemplatePage Component={component} {...rest}/>
+        <Logado>
+          <TemplatePage Component={component} {...rest}/>
+        </Logado>
       ):(
         <Redirect to={{pathname: "/search", state: {from: props.location}}} />
       )
@@ -36,7 +39,7 @@ const App = () => {
   return (
     
       <Router>
-        <TemplateDefault>
+      
         <Switch>
          
           <PrivateRoute path="/unedit/:id" component={UnEdit}/>
@@ -46,14 +49,18 @@ const App = () => {
           
           
           <Route path="/search">
-            <TemplatePage  Component={SignIn} />
+            <TemplateDefault>
+              <TemplatePage  Component={SignIn} />
+            </TemplateDefault>
           </Route>
           
           <Route path="">
-            <TemplatePage Component={Home} />
+            <TemplateDefault>
+              <TemplatePage Component={Home} />
+            </TemplateDefault>
           </Route>
         </Switch>
-        </TemplateDefault>
+   
       </Router>
     
   )
