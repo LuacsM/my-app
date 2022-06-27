@@ -2,7 +2,6 @@ import{
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
 } from 'react-router-dom'
 
 import Home from './pages/Home';
@@ -27,7 +26,9 @@ const PrivateRoute = ({component, ...rest}) => (
           <TemplatePage Component={component} {...rest}/>
         </Logado>
       ):(
-        <Redirect to={{pathname: "/search", state: {from: props.location}}} />
+        <TemplateDefault>
+          <TemplatePage Component={SignIn}/>
+        </TemplateDefault>
       )
     }
   
