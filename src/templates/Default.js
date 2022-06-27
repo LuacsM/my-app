@@ -1,8 +1,11 @@
 import Container from '@mui/material/Container';
 
 import ResponsiveAppBar from '../partials/Header/NavBar';
+import NavAuth from '../partials/Header/NavAuth';
 
 import { makeStyles } from '@material-ui/styles';
+
+import { isAuthenticate } from '../auth';
 
 const useStyles = makeStyles({
   Container: {
@@ -11,12 +14,21 @@ const useStyles = makeStyles({
   },
 });
 
+const DecideNavBar = () => (
+  isAuthenticate() ? (
+    <NavAuth/>
+  ):(
+    <ResponsiveAppBar/>
+  )
+);
+ 
+
 
 const Default = ({children}) => {
     const classes = useStyles()
     return(
         <>
-          <ResponsiveAppBar/>
+          <DecideNavBar />
           <Container maxWidth="lg" className={classes.Container}>
               {children}
           </Container>
